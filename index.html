@@ -1,0 +1,376 @@
+<html>
+<head>
+<script></script>
+
+<script src="/assets/web_libs.js?v4"></script>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400;300" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<style>* {
+    margin:0px;
+}
+
+.menu {
+    position:fixed;
+    top:44px;
+    left:0px;
+    width:0px;
+    height:100%;
+    background-color:#fff;
+    border-style:solid;
+    border-width:1px;
+    border-top:none;
+    border-bottom:none;
+    border-left:none;
+    border-color:#fff;
+    box-shadow:1px 0px 1px 0px #999;
+}
+.menu_toggle {
+    outline:none;
+    position:fixed;
+    left:5px;
+    font-size:30px;
+    border-style:none;
+    border-radius:100%;
+    font-weight:900;
+    background-color:transparent;
+    border-color:#888;
+    color:#888;
+}
+.menu_hide {
+    position:fixed;
+    top:10px;
+    width:0px;
+    padding:0px;
+    left:15px;
+    font-size:20px;
+    border-style:none;
+    border-radius:100%;
+    font-weight:900;
+    background-color:transparent;
+    color:#333;
+    outline:none;
+    cursor:pointer;
+}
+.head {
+    height:40px;
+    width:100%;
+    border-style:solid;
+    border-left:none;
+    border-right:none;
+    border-width:1px;
+    border-color:#fff;
+    box-shadow:0px 1px 1px 0px #999;
+}
+.app1 {
+    padding:5px;
+    width:0px;
+}
+.app2 {
+    padding:5px;
+    width:0px;
+}
+.likebtn-wrapper {
+    position:relative;
+    left:600px;
+    top:-85px;
+}
+.new {
+    position:fixed;
+    left:100px;
+    top:100px;
+    height:280px;
+    width:400px;
+    background:#fff;
+    border-radius:15px;
+    border-style:solid;
+    border-width:1px;
+    border-top-width:1px;
+    border-left-width:1px;
+    border-right-width:1px;
+    border-color:#4DB600;
+    opacity:0.9;
+    box-shadow:0px 0px 4px 0px;
+    display:none;
+}
+.new:hover {
+    border-bottom-width:5px;
+}
+.pic {
+    position:relative;
+    width:70px;
+    height:70px;
+    border-radius:100%;
+    background-image:url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw4PDxAUDw4ODw0NDQwNDhAQDw8MDQ0OFREXGBQUFRQYHCggGBolHRMUITEhJTUrLi4uFx8zRDMsNyg5LisBCgoKDg0OGhAQFywfHCQsLSwsLCwsLDcsLCwsLC0sLSwsLCwsLCwsLCwsLDcrLCwsKywsKyssLCssLCssLCwrK//AABEIAHgAeAMBEQACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAABQQDBgIB/8QALRAAAgEBBgMJAAMBAAAAAAAAAAECAwQFESExcUFRYRIiMkKBkaGxwWJy0SP/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAwIBBAX/xAAeEQEAAgIDAQEBAAAAAAAAAAAAAQIDESExQVESMv/aAAwDAQACEQMRAD8A9SfQfDAAAAAAAMQAAAAAAAAAAAAAAN1lu2Us591cvM/8MTdWuKZ7UaVjpx0it3myc2leKVjx2wONM9psUJ/xlzRqLaYtjizBUuyotGpfDNxeEZwz4xzg4vBpp8mb2nMTHb5DgAAAAAAABVu2x4JSks3nFclzJWt5D0Y8euZUTCwAAAAOVooRqLCXo+KOxOnLVi0coNWm4SaeqZaJ28cxqdS+DrgAAAAAHew0e3USeizeyM2nUN0ruy+ResAAAAAABHviPfXWP6Vp082bthNpAAAAAAUbmjnN8lFE8i+HuVUmuAAAAAAAlX1rDaX2UxvPm7hOKIgAAAAAVLm0nvH6J5HowdSpE1gAAAAAAEy+o+B8O8vopjQzx0mFEAAAAAAKtzeGe8fond6MHUqJNYAAAAAABjvV/wDPeUTVO0838opZ5QAAAAAKFz1EpSi/Ng1ujF49WwzzpWJPQAAAAAAAk3xVxkory4t7spSPXnzW50nlEQAAAAAP2MmmmtU8UDp6Cz1lOKa9ejITGntrb9Rt1OOgAAAA5Wqt2IN8tNzsRuXLW/MbeflJttvVvFl3i3t+AAAAAAAAULmqYSkuaTW6J3hbDPMwrE3oAAAABMvir4Yr+z/ClI9QzT4mFEAAAAAAAADpZ6nYnF8nntxOTG4arOp29EQe0DgAAAQrxeNWXTBfBanTyZf6lmNMAAAAAAAAGuy2CU8G+7H5a6GJtpSmKZ5WyT1gcAAACZedjk32orHLvLjlxKVt4hlpPcJhRAAAAAAD6p05SeEU2+hzbsRM9KVju7B4zwb4R4epi1/i9MWuZUiawAAAAAACZeNix70Fn5l+opW3iGTH7CYUQAAFKndL80/ZYk/2vGH7LTSu+nHh2t8zM3lSMVYaoxS0SS6ZGW36AAAAAAAAAB1wrWSnPWKx5rJnYtMMWpWe4Ya11NeCWPR5P3Nxf6lOH4xVaM4eKLX17m4mJSmsx29EQe0DgAAAAAAAAAAAAAA0B//Z");
+    background-size:cover;
+    box-shadow:0px 0px 4px 0px;
+    top:-18px;
+}
+.up {
+    width:10px;
+    height:10px;
+    background-color:#333;
+    border-style:solid;
+    border-radius:5px;
+    position:relative;
+    left:80px;
+    top:-25px;
+}
+.close {
+    position:relative;
+    width:20px;
+    height:20px;
+    border-radius:100%;
+    background-image:url("http://www.unh.edu/nem/global/images/close_button.png");
+    background-size:cover;
+    left:375px;
+    top:-80px;
+    filter:10px;
+}
+.tclose {
+    position:relative;
+    width:15px;
+    height:15px;
+    border-radius:100%;
+    background-image:url("http://www.doublepine.co.th/images/close.png");
+    background-size:cover;
+    left:375px;
+    top:-268px;
+}
+.dark {
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.9);
+    display:none;
+}
+.text {
+    position:fixed;
+    width:400px;
+    height:28px;
+    background-color:#FF297E;
+    border-color:#EB005D;
+    border-style:solid;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+    color:#fff;
+    text-align:center;
+    font-size:20px;
+    font-family:Arial;
+    font-weight:lighter;
+    display:none;
+}
+.edit {
+    position:relative;
+    top:8px;
+    width:400px;
+    height:250px;
+    border-style:solid;
+    border-color:#EB005D;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    resize:none;
+    outline:0;
+}
+.imc {
+    position:relative;
+    border-radius:100%;
+}
+.info {
+    position:relative;
+    top:-38px;
+    width:100%;
+    height:70px;
+    background-color:#fff;
+    border-style:solid;
+    border-width:1px;
+    border-color:rgba(0,0,0,.2);
+    border-left:none;
+    border-right:none;
+}
+.fri {
+    width:60px;
+    height:60px;
+    border-radius:100%;
+    background-image:url("https://www.cube7.com/assets/people_icon.png");
+    background-size:cover;
+    border-style:solid;
+    border-width:1px;
+    border-color:#4DB600;
+    transition-duration:0.5s;
+    box-shadow:0px 0px 2px 0px #4DB600;
+    position:relative;
+    top:-104px;
+    left:10px;
+}
+.fri:hover {
+    background-color:#4DB600;
+}
+.block {
+    background-color:#fff;
+    width:700px;
+    height:400px;
+    position:fixed;
+    box-shadow:rgba(0,0,0,.2) 0 4px 30px;
+    border-style:solid;
+    border-color:rgba(0,0,0,.2);
+    border-width:1px;
+    transform:rotateY(50deg);
+    perspective:1000px;
+}
+</style>
+	<script defer="">var main = function() {
+    
+    $(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+    
+    $(".menu_toggle").click(function() {
+            $('.menu').animate({
+      width: "50px"
+    }, 200);
+    $('.app1').animate({
+      width: "40px"
+    }, 200);
+    $('.app2').animate({
+      width: "40px"
+    }, 200);
+    $('.menu_hide').width(20);
+    });
+    $(".menu_hide").click(function() {
+        $('.menu').animate({
+      width: "0px"
+    }, 200);
+    $('.app1').animate({
+      width: "0px"
+    }, 200);
+    $('.app2').animate({
+      width: "0px"
+    }, 200);
+    $('.menu_hide').width(0);
+    });
+    $(function() {
+        $('.new').draggable({ containment: "*", scroll: false
+        });
+            $(function () {
+        $(":file").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = imageIsLoaded;
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    });
+
+    function imageIsLoaded(e) {
+        $('#myImg').attr('src', e.target.result);
+        $('#yourImage').attr('src', e.target.result);
+    };
+    $(".app1").click(function() {
+        $('.menu').animate({
+      width: "0px"
+    }, 200);
+    $('.app2').animate({
+      width: "0px"
+    }, 200);
+    $('.app1').animate({
+      width: "0px"
+    }, 200);
+        $('.menu_hide').width(0);
+        $('.new').show(500);
+        $('.dark').fadeIn(500);
+    });
+    
+    $(".app2").click(function() {
+        $('.menu').animate({
+      width: "0px"
+    }, 200);
+    $('.app2').animate({
+      width: "0px"
+    }, 200);
+    $('.app1').animate({
+      width: "0px"
+    }, 200);
+        $('.menu_hide').width(0);
+        $('.text').show(500);
+    });
+    
+    $('.close').click(function() {
+        $('.new').hide(200);
+        $('.dark').fadeOut(200);
+    });
+    
+    $('.close').click(function() {
+        $('.new').hide(200);
+        $('.dark').fadeOut(200);
+    });
+    
+    $('.tclose').click(function() {
+        $('.text').fadeOut(200);
+        $('.menu').animate({
+      width: "0px"
+    }, 200);
+    $('.app2').animate({
+      width: "0px"
+    }, 200);
+    $('.app1').animate({
+      width: "0px"
+    }, 200);
+        $('.menu_hide').width(0);
+    });
+    
+    $(function() {
+        $('.text').draggable({ containment: "*", scroll: false
+        });
+    });
+    
+    $(function() {
+        $(".block").draggable();
+    });
+    });
+}
+
+$(document).ready(main);</script>
+</head>
+<body>
+<div class="head"><a href="http://www.codecademy.com/" target="_blank"><img class="ihead" src="https://lh4.googleusercontent.com/-nkesMmcWjz8/VBvkYg19p_I/AAAAAAAAAEM/_tEMVDGcoJc/w290-h96-no/title.png" width="129px" style="display:block; margin-left:auto; margin-right:auto;"></a></div>
+<button class="menu_toggle">+</button>
+<div class="menu">
+<button class="menu_hide">x</button>
+<img class="app1" src="https://www.concursive.com/show/matt-r/signature-image/airplane-icon-100x100.png" width="40px" height="40px">
+<img class="app2" src="http://www.veryicon.com/icon/png/System/Sticker%20Pack%202/Text%20Edit.png" width="40px" height="40px" style="filter:10px;">
+<div class="text ui-draggable ui-draggable-handle">
+<p class="te">Ntext</p>
+<textarea class="edit"></textarea>
+<div class="tclose"></div>
+</div>
+<div class="dark"></div>
+<div class="new ui-draggable ui-draggable-handle">
+<input type="file" class="up">
+<img id="myImg" alt="your image" class="pic">
+<div class="close"></div>
+<div class="info"></div>
+<div class="fri"></div>
+</div>
+<div class="block ui-draggable ui-draggable-handle"></div>
+</div>
+</body>
+</html>
